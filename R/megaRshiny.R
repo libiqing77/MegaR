@@ -635,6 +635,7 @@ server <- function(input, output, session){
         filename = "important_features.pdf",
         content = function(file) {
             grDevices::pdf(file) # open the pdf device
+            par(mar=c(10,4,4,2))
             print(plotimptfeatures(myrfmodel()[[1]][[3]], 10))
             dev.off()
         }
