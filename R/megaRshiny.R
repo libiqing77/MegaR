@@ -678,7 +678,7 @@ server <- function(input, output, session){
         content = function(file) {
             grDevices::pdf(file)
             print(graphics::plot(myrfmodel()[[1]][[3]]$finalModel,
-                       main="Train Error during training model")
+                       main="Train Error during training model"))
                  legend("topright",legend=c("OOB error","Class1 Error","Class2 Error"),col=c(1,3,2),lty=3,text.col=c(1,3,2),lwd=2)
             dev.off()
         }
