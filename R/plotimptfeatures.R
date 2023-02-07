@@ -15,6 +15,6 @@ fc <- grDevices::colorRampPalette(rev(RColorBrewer::brewer.pal(n = 9,
                                                               "Blues")))
 a <- graphics::barplot(new[1:10,]$Overall,names.arg= substr(stringr::str_remove
                                              (new[1:10,]$first, ".*s__" ),1,20),
-        cex.axis = .75, cex.names = .75, col = fc(10))
+        cex.axis = .75, cex.names = .75,las=2, col = fc(10))
 return(a)
 }
