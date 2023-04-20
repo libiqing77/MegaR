@@ -26,8 +26,8 @@ validation<-function(Num,modelclas,mytable3,classid,sampleid,ruleout,psd,
     otu_table_scaled_state$country <- factor(otu_table_scaled_state$country, levels = ruleout) # add this lin
     otu_table_scaled_state1 <- stats::na.omit(droplevels( otu_table_scaled_state))
     fit_control <- caret::trainControl(method = "cv",number=10)
-    #progress <- shiny::Progress$new(style = 'notification')
-    #progress$set(message = "Working...",value = 0)
+    progress <- shiny::Progress$new(style = 'notification')
+    progress$set(message = "Working...",value = 0)
     Acc3<- NULL
     Kpp3 <- NULL
     for (i in 1:Num) {
@@ -61,9 +61,9 @@ validation<-function(Num,modelclas,mytable3,classid,sampleid,ruleout,psd,
             Acc3[i] <- RF_state_classify_loocv$results$Accuracy
             Kpp3[i] <- RF_state_classify_loocv$results$Kappa
         }
-        #progress$inc(i/Num, detail=paste("Validation set", i+1))
+        progress$inc(i/Num, detail=paste("Validation set", i+1))
     }
-    #on.exit(progress$close())
+    on.exit(progress$close())
     sprintf("The 10 fold cross validated obtained from the average of %i
             independent run is  %f. ", Num , sum(Acc3)/Num )
 }
